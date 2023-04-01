@@ -1,28 +1,24 @@
-# Project 5 - *Bereal-Clone*
+# Project 6 - *Bereal-Clone-Part2*
 
 Submitted by: **Jiaying Chen**
 
-**Bereal-Clone** is an app that allows users to create account, log into existing account, and post things on their feed.  
+**Name of your app** is an app that introduces ... [TODO] 
 
-Time spent: **3** hours spent in total
+Time spent: **X** hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [x] User can register a new account
-- [x] User can log in with newly created account
-- [x] App has a feed of posts when user logs in
-- [x] User can upload a new post which takes in a picture from photo library and a caption	
+- [x] User can launch camera to take photo instead of photo library
+- [x] User session persists when application is closed and relaunched
+- [x] Users are able to log out and return to sign in page
+- [x] Users are NOT able to see other photos until they upload their own	
  
 The following **optional** features are implemented:
 
-- [ ] Users can pull to refresh their feed and see a loading indicator
-- [ ] Users can infinite-scroll in their feed to see past the 10 most recent photos
-- [ ] Users can see location and time of photo upload in the feed	
-- [ ] User is able to logout
-- [x] User stays logged in when app is closed and open again	
-
+- [ ] User receive notifcation when it is time to post
+- [ ] Users can make comments and view comments in posts	
 
 The following **additional** features are implemented:
 
@@ -32,38 +28,28 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-![alt text](https://github.com/rcwoshimao/BeReal-Clone/blob/main/3OV6f.gif)
-
-<img src='https://github.com/rcwoshimao/BeReal-Clone/blob/main/3OV6f.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' /> 
+<img src='https://i.imgur.com/fOOa7nL.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
-GIF created with GIFER 
+GIF created with imgurl 
 
 ## Notes
 
-In PostViewController, the original given line for ```provider.loadObject``` did not work. Here's the fix: 
-### Original:
-```Swift
- provider.loadObject(ofClass: UIImage.self) { [weak self] object, error in
-  // Make sure we can cast the returned object to a UIImage
-     guard let image = object as? UIImage else {
-     // ❌ Unable to cast to UIImage
-         self?.showAlert(error)
-         return
-  }
-```
+1. ShowAlert function redeclared in all view controllers, contributing to an '''swift  self?.showAlert(description: error.localizedDescription)
+Ambiguous use of 'showAlert(description)' ''' error. 
+Fix: took out the redeclarations. Left the '''swift showMissingFieldsAlert()''' function in SignUpViewController file. 
 
-### Fixed:
-```Swift
-//took out the "error":
-provider.loadObject(ofClass: UIImage.self) { [weak self] object, _ in
-    guard let image = object as? UIImage else {
-    self?.showAlert()
-    return
-}
+2. '''Thread 1: "[<UIViewController 0x127206ef0> setValue:forUndefinedKey:]: this class is not key value coding-compliant for the key passwordField."'''. Error connecting to the wrong project's password field outlet. 
+Fix: deleted passwordfield reference and recreate the outlet. 
 
+3. When signing up user, shown '''parse error code = -1 = cannot sign up a user with an objectID different from the current one''' error; when logged in, shown '''Thread 1: Fatal error: Error saving: ParseError code=209 error=Invalid session token''' error. 
+Cause: unknown issue with session token; 
+Fixes: 
+1. Tried rebuilding app and cleaning build folder ❌
+2. Took out the auto login code in Scene delegate '''swift if User.current != nil {login()}''' , forced logout; still experienced issue at launch. ❌
+3. Deleted users and created new session ❌
+4. Created new back4app app, created new session, connected to new app. ✅
 
-```
 ## License
 
     Copyright [2023] [Jiaying Chen]
