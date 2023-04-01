@@ -28,25 +28,25 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://i.imgur.com/fOOa7nL.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/fOOa7nL.mp4' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
 GIF created with imgurl 
 
 ## Notes
 
-1. ShowAlert function redeclared in all view controllers, contributing to an '''swift  self?.showAlert(description: error.localizedDescription)
-Ambiguous use of 'showAlert(description)' ''' error. 
-Fix: took out the redeclarations. Left the '''swift showMissingFieldsAlert()''' function in SignUpViewController file. 
+1. ShowAlert function redeclared in all view controllers, contributing to an ```swift  self?.showAlert(description: error.localizedDescription)
+Ambiguous use of 'showAlert(description)' ``` error. 
+Fix: took out the redeclarations. Left the ```swift showMissingFieldsAlert()``` function in SignUpViewController file. 
 
-2. '''Thread 1: "[<UIViewController 0x127206ef0> setValue:forUndefinedKey:]: this class is not key value coding-compliant for the key passwordField."'''. Error connecting to the wrong project's password field outlet. 
+2. ```Thread 1: "[<UIViewController 0x127206ef0> setValue:forUndefinedKey:]: this class is not key value coding-compliant for the key passwordField."```. Error connecting to the wrong project's password field outlet. 
 Fix: deleted passwordfield reference and recreate the outlet. 
 
-3. When signing up user, shown '''parse error code = -1 = cannot sign up a user with an objectID different from the current one''' error; when logged in, shown '''Thread 1: Fatal error: Error saving: ParseError code=209 error=Invalid session token''' error. 
+3. When signing up user, shown ```parse error code = -1 = cannot sign up a user with an objectID different from the current one``` error; when logged in, shown ```Thread 1: Fatal error: Error saving: ParseError code=209 error=Invalid session token``` error.  App freezes on both occation. 
 Cause: unknown issue with session token; 
 Fixes: 
 1. Tried rebuilding app and cleaning build folder ❌
-2. Took out the auto login code in Scene delegate '''swift if User.current != nil {login()}''' , forced logout; still experienced issue at launch. ❌
+2. Took out the auto login code in Scene delegate ```swift if User.current != nil {login()}```, forced logout; still experienced issue at launch. ❌
 3. Deleted users and created new session ❌
 4. Created new back4app app, created new session, connected to new app. ✅
 
