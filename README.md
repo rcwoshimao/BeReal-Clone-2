@@ -31,6 +31,8 @@ Here's a walkthrough of implemented user stories:
 <img src='https://i.imgur.com/fOOa7nL.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 [Link to walkthrough gif](https://i.imgur.com/fOOa7nL.gif)
 
+[Duck Duck Go](https://duckduckgo.com)
+
 GIF created with imgurl 
 
 ## Notes
